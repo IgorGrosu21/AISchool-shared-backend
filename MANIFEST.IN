@@ -1,0 +1,2 @@
+recursive-include shared_backend *.py
+recursive-include shared_backend *.md

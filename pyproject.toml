@@ -1,0 +1,75 @@
+[project]
+name = "aischool_backend_framework"
+version = "0.1.0"
+description = "Shared utilities and services for AISchool microservices"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "django>=5.2.0",
+    "djangorestframework>=3.16.0",
+    "django-cors-headers>=4.9.0",
+    "drf-spectacular>=0.29.0",
+    "drf-spectacular-sidecar>=2025.12.0",
+    "pyjwt>=2.10.0",
+    "cryptography>=46.0.0",
+    "requests>=2.32.0",
+    "inflection>=0.5.1",
+    "python-dotenv>=1.2.0",
+]
+[project.optional-dependencies]
+dev = [
+    "mypy>=1.19.0",
+    "ruff>=0.15.0",
+    "django-stubs>=5.2.0",
+    "djangorestframework-stubs>=3.16.0",
+    "pylint>=3.3.0",
+]
+local = [
+    "waitress>=3.0.0",
+]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.package-data]
+"*" = ["*.md", "*.txt"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["shared_backend*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+exclude = [
+  "migrations",
+  "venv",
+  ".venv",
+  "node_modules",
+  "__pycache__",
+  "*.pyc"
+]
+
+[tool.ruff.lint]
+select = [
+  "E",   # pycodestyle errors
+  "F",   # pyflakes
+  "I",   # isort (imports)
+  "UP",  # pyupgrade
+  "B",   # flake8-bugbear
+  "DJ",  # django rules
+]
+
+ignore = [
+  "N801",  # invalid function name
+  "D100",  # missing docstring in module
+  "E501"   # line too long
+]
+
+[tool.mypy]
+plugins = ["mypy_django_plugin.main"]
+strict = true
+
+[tool.django-stubs]
+django_settings_module = "shared_backend.core.settings"
