@@ -1,5 +1,5 @@
 import json
-from datetime import UTC, datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import cast
 
@@ -13,7 +13,10 @@ def is_jwks_stale(max_age_hours: int = 24) -> bool:
     if not CACHE_FILE.exists():
         return True
 
-    file_age = datetime.now(UTC) - datetime.fromtimestamp(CACHE_FILE.stat().st_mtime, UTC)
+    file_age = datetime.now(timezone.utc) - datetime.fromtimestamp(  # noqa: UP017
+        CACHE_FILE.stat().st_mtime,
+        timezone.utc,  # noqa: UP017
+    )
     return file_age > timedelta(hours=max_age_hours)
 
 
