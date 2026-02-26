@@ -41,7 +41,7 @@ class Client:
         cls._host = getattr(settings, "HOST", "")
         cls._services_config = getattr(settings, "SERVICES_CONFIG", {})
 
-        cls._session = Session(cls._host)
+        cls._session = Session()
         cls._token_storage = TokenStorage(cls._id)
         cls.initialize_storage()  # may vary in services
         cls._consumer_caller = ConsumerCaller(cls._debug)

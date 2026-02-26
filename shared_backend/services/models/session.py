@@ -36,8 +36,8 @@ class Session:
     _headers: dict[str, str | None]
     _headers_with_token: dict[str, str | None]
 
-    def __init__(self, host: str):
-        self._headers = {"Host": host, "Content-Type": "application/json"}
+    def __init__(self):
+        self._headers = {"Content-Type": "application/json"}
         self._headers_with_token = {**self._headers, "Authorization": None}
         self._recreate_session()
 
