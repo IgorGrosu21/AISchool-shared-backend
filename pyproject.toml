@@ -3,7 +3,7 @@ name = "aischool_backend_framework"
 version = "0.1.0"
 description = "Shared utilities and services for AISchool microservices"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.10"
 dependencies = [
     "django>=5.2.0",
     "djangorestframework>=3.16.0",
